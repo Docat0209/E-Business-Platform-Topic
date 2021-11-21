@@ -11,7 +11,7 @@
     <!-- 最近動作區塊 -->
     <div id="recent_area" class="item_box">
       <div class="recent_area_title">
-           <h1>最近動作</h1>
+        <h1>最近動作</h1>
       </div>
       <div class="recent_area_main"></div>
     </div>
@@ -30,37 +30,31 @@
     </div>
     <!-- 小訊息區塊 -->
     <div id="little_info_area_1" class="item_box info_area">
-      <div class="info_main_text">
-        <img
-          style="width: 65px; height: 65px"
-          src="../assets/note-check.svg"
-          class="info_icon"
-        />
-        <h1 class="info_main_text_title">家具數量</h1>
-        <!--    接API取得Value    -->
-        <span class="info_sub_text_title">3</span>
+      <div class="little_info_area_1_title">
+        <h1>家具數量</h1>
+        <img class="info_svg" src="../assets/note-check.svg" alt="" />
       </div>
-      <hr />
-      <div class="info_sub_text">
-        <!--  連結-->
-        <span class="three_line"></span>
-        <span>詳細資料</span>
+      <div class="little_info_area_1_main">
+        <!-- <div class="little_info_area_main_left">
+          <img class="info_svg" src="../assets/note-check.svg" alt="" />
+        </div> -->
+
+        <h3>
+          3
+          <span>台</span>
+        </h3>
       </div>
     </div>
     <div id="little_info_area_2" class="item_box info_area">
-      <div class="info_main_text">
-        <img
-          style="width: 59px; height: 59px"
-          src="../assets/flash.png"
-          class="info_icon"
-        />
-        <h1 class="info_main_text_title">使用瓦數</h1>
-        <!--    接API取得Value    -->
-        <span class="info_sub_text_title">3</span>
+      <div class="little_info_area_2_title">
+        <h1>用電瓦數</h1>
+        <img class="info_svg_2" src="../assets/flash.svg" alt="" />
       </div>
-      <hr />
-      <div class="info_sub_text">
-        <span>每仟瓦3.52元</span>
+      <div class="little_info_area_2_main">
+        <h3>
+          6874
+          <span>瓦</span>
+        </h3>
       </div>
     </div>
   </main>
@@ -80,6 +74,8 @@ export default {
 * {
   --boxRadiusValue: 0px;
   --itemBoxShadowColor: rgba(90, 90, 90, 0.25);
+  --littleInfoColor: #5aeea6;
+  --infoFontSize: 35px;
 }
 .home {
   box-sizing: border-box;
@@ -158,7 +154,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F97068;
+  background-color: #f97068;
 }
 /* 最近動作區塊 內容 */
 #recent_area .recent_area_main {
@@ -191,6 +187,11 @@ export default {
   align-items: center;
   justify-content: center;
 }
+#power_chart_area .power_chart_area_title h1 {
+  /* color: rgb(255, 255, 255); */
+  /* -webkit-text-stroke: .1px rgb(36, 36, 36); */
+  /* text-stroke */
+}
 #power_chart_area #powerChartArea {
   height: 85%;
   width: 100%;
@@ -212,12 +213,25 @@ export default {
 #little_info_area_1 {
   grid-row: 3/4;
   grid-column: 3/4;
-  /* margin-left: 800px; */
-  /* animation: recent_area_in 0.8s ease-out 1 1s; */
   animation-name: little_info_area_1_in;
   animation-duration: 1s;
 }
-
+#little_info_area_1 .little_info_area_1_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 31%;
+  background-color: var(--littleInfoColor);
+}
+#little_info_area_1 .little_info_area_1_main {
+  width: 100%;
+  height: 69%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--infoFontSize);
+}
 @keyframes little_info_area_1_in {
   0% {
     margin-left: 800px;
@@ -233,7 +247,22 @@ export default {
   animation-name: little_info_area_2_in;
   animation-duration: 1.1s;
 }
-
+#little_info_area_2 .little_info_area_2_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 31%;
+  background-color: var(--littleInfoColor);
+}
+#little_info_area_2 .little_info_area_2_main {
+  width: 100%;
+  height: 69%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--infoFontSize);
+}
 @keyframes little_info_area_2_in {
   0% {
     margin-left: 800px;
@@ -242,52 +271,18 @@ export default {
     margin-left: 0;
   }
 }
-
-.info_area {
-  box-sizing: border-box;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
+.little_info_area_main_left,
+.little_info_area_main_right {
+  width: 50%;
 }
-
-.info_main_text {
-  margin-top: 30px;
-  padding-left: 10px;
-  padding-right: 30px;
-  display: grid;
-  grid-template-rows: 0.5fr 0.1fr;
-  grid-template-columns: 0.5fr 0.5fr;
-  box-sizing: border-box;
+.info_svg_1 {
+  /* font-size: 30px; */
+  width: 50px;
+  height: 50px;
 }
-
-.info_main_text_title {
-  padding-top: 5px;
-  margin-left: auto;
-}
-
-.info_sub_text_title {
-  margin-left: auto;
-  padding-bottom: 5px;
-  font-size: 40px;
-}
-
-.info_icon {
-  margin-top: auto;
-  margin-bottom: auto;
-  grid-column: 1/2;
-  grid-row: 1/3;
-}
-
-.info_sub_text {
-  margin-top: 10px;
-  font-size: 30px;
-  margin-left: 25px;
-}
-
-.info_area hr {
-  width: 87.7%;
-  /*置中*/
-  margin-left: auto;
-  margin-right: auto;
+.info_svg_2 {
+  /* font-size: 30px; */
+  width: 45px;
+  height: 45px;
 }
 </style>
