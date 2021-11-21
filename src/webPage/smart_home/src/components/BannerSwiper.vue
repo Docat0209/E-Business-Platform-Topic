@@ -40,11 +40,11 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      autoplay: {
-        //輪播秒數
-        delay: 3000,
-        disableOnInteraction: false,
-      },
+      // autoplay: {
+      //   //輪播秒數
+      //   delay: 3000,
+      //   disableOnInteraction: false,
+      // },
       keyboard: {
         //鍵盤切換
         enabled: true,
@@ -87,10 +87,12 @@ img {
   align-items: center;
 }
 .swiperButton{
-  /* height: 100%; */
   width: 50%;
-  /* font-size: 60px; */
+  height: 100%;
+  bottom:0;
+  top: 0;
 }
+/* 隱藏箭頭 */
 .swiperButton::after{
   content: '';
 }
