@@ -40,11 +40,11 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      // autoplay: {
-      //   //輪播秒數
-      //   delay: 3000,
-      //   disableOnInteraction: false,
-      // },
+      autoplay: {
+        //輪播秒數
+        delay: 3000,
+        disableOnInteraction: false,
+      },
       keyboard: {
         //鍵盤切換
         enabled: true,
