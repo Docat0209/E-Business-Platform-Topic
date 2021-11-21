@@ -15,6 +15,8 @@
       </div>
     </div>
     <div class="swiper-pagination"></div>
+    <div class="swiper-button-next swiperButton"></div>
+    <div class="swiper-button-prev swiperButton"></div>
   </div>
 </template>
 
@@ -34,12 +36,17 @@ export default {
         el: ".swiper-pagination",
         clickable: true,
       },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
       autoplay: {
         //輪播秒數
         delay: 3000,
         disableOnInteraction: false,
       },
       keyboard: {
+        //鍵盤切換
         enabled: true,
         onlyInViewport: false,
       },
@@ -59,7 +66,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-img{
+img {
   object-fit: cover;
 }
 .swiper-slide {
@@ -79,7 +86,14 @@ img{
   -webkit-align-items: center;
   align-items: center;
 }
-
+.swiperButton{
+  /* height: 100%; */
+  width: 50%;
+  /* font-size: 60px; */
+}
+.swiperButton::after{
+  content: '';
+}
 /* .swiper-slide img {
   display: block;
   width: 100%;

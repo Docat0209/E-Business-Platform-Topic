@@ -68,6 +68,9 @@ export default {
 };
 </script>
 <style scoped>
+* {
+  --boxRadiusValue: 0px;
+}
 .home {
   box-sizing: border-box;
   padding: 40px;
@@ -84,7 +87,7 @@ export default {
 .item_box {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: var(--boxRadiusValue);
   background-color: white;
   box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease-in-out;
@@ -126,8 +129,6 @@ export default {
 #recent_area {
   grid-row: 1/2;
   grid-column: 3/4;
-  /* margin-left: 3000px; */
-  /* animation: recent_area_in 0.8s ease-out 1; */
   animation-name: recent_area_in;
   animation-duration: 0.9s;
 }
@@ -149,23 +150,19 @@ export default {
   animation-duration: 2s;
 }
 #power_chart_area h1 {
-  /* padding-top: 20px; */
   height: 15%;
   width: 100%;
 }
 #power_chart_area #powerChartArea {
-  /* margin: auto 0; */
   height: 85%;
   width: 100%;
 }
 @keyframes power_chart_area_in {
   0% {
     opacity: 0;
-    /* margin-top: 800px; */
   }
   100% {
     opacity: 100;
-    /* margin-top: 0; */
   }
 }
 #power_chart_area h1 {
