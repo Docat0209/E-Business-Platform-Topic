@@ -2,16 +2,16 @@
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img src="https://placem.at/things?random=1" />
+        <img src="https://fakeimg.pl/1000x350/?text=testBanner1" />
       </div>
       <div class="swiper-slide">
-        <img src="https://placem.at/things?random=2" />
+        <img src="https://fakeimg.pl/1000x350/?text=testBanner2" />
       </div>
       <div class="swiper-slide">
-        <img src="https://placem.at/things?random=3" />
+        <img src="https://fakeimg.pl/1000x350/?text=testBanner3" />
       </div>
       <div class="swiper-slide">
-        <img src="https://placem.at/things?random=4" />
+        <img src="https://fakeimg.pl/1000x350/?text=testBanner4" />
       </div>
     </div>
     <div class="swiper-pagination"></div>
