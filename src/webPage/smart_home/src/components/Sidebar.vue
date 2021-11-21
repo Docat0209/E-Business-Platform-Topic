@@ -24,7 +24,7 @@
         </li>
         <li class="link_list">
           <router-link :to="listProductPath" class="link_text"
-            ><img src="../assets/list-square.svg" class="link_icon" /> 產品列表
+            ><img src="../assets/list-square.svg" class="link_icon" /> 產品控制
           </router-link>
         </li>
         <li class="link_list">
