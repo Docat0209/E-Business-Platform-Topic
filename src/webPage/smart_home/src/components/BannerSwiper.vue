@@ -2,16 +2,16 @@
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img src="https://fakeimg.pl/1000x350/?text=testBanner1" />
+        <img src="https://placem.at/things?random=1" />
       </div>
       <div class="swiper-slide">
-        <img src="https://fakeimg.pl/1000x350/?text=testBanner2" />
+        <img src="https://placem.at/things?random=2" />
       </div>
       <div class="swiper-slide">
-        <img src="https://fakeimg.pl/1000x350/?text=testBanner3" />
+        <img src="https://placem.at/things?random=3" />
       </div>
       <div class="swiper-slide">
-        <img src="https://fakeimg.pl/1000x350/?text=testBanner4" />
+        <img src="https://placem.at/things?random=4" />
       </div>
     </div>
     <div class="swiper-pagination"></div>
@@ -96,10 +96,10 @@ img {
 .swiperButton::after{
   content: '';
 }
-/* .swiper-slide img {
+.swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-} */
+}
 </style>

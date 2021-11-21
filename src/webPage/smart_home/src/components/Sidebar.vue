@@ -75,7 +75,7 @@ export default {
   left: 0;
   text-align: center;
   background-color: white;
-  box-shadow: 2px 0 4px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 0 4px 1px rgba(90, 90, 90, 0.25);
 }
 
 /*Logo*/

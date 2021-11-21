@@ -1,16 +1,25 @@
 <template>
   <main class="home">
     <div id="tech_video_area" class="item_box">
-      <h1>最新消息</h1>
+      <div class="tech_video_area_title">
+        <h1>最新消息</h1>
+      </div>
       <div id="bannerSwiperArea">
         <BannerSwiper></BannerSwiper>
       </div>
     </div>
     <!-- 最近動作區塊 -->
-    <div id="recent_area" class="item_box"></div>
+    <div id="recent_area" class="item_box">
+      <div class="recent_area_title">
+           <h1>最近動作</h1>
+      </div>
+      <div class="recent_area_main"></div>
+    </div>
     <!-- 近五天用電量折線圖條圖區塊 -->
     <div id="power_chart_area" class="item_box">
-      <h1>用電情形</h1>
+      <div class="power_chart_area_title">
+        <h1>用電情形</h1>
+      </div>
       <div id="powerChartArea">
         <PowerChart
           canvas-width="600px"
@@ -70,6 +79,7 @@ export default {
 <style scoped>
 * {
   --boxRadiusValue: 0px;
+  --itemBoxShadowColor: rgba(90, 90, 90, 0.25);
 }
 .home {
   box-sizing: border-box;
@@ -89,7 +99,8 @@ export default {
   height: 100%;
   border-radius: var(--boxRadiusValue);
   background-color: white;
-  box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.25);
+
+  box-shadow: 1px 2px 4px 1px var(--itemBoxShadowColor);
   transition: all 0.2s ease-in-out;
 }
 
@@ -105,8 +116,8 @@ export default {
   animation-name: video_out;
   animation-duration: 1.6s;
   animation-timing-function: ease-in-out;
-  padding: 15px;
-  box-sizing: border-box;
+  /* padding: 15px; */
+  /* box-sizing: border-box; */
 }
 
 @keyframes video_out {
@@ -117,20 +128,42 @@ export default {
     opacity: 100;
   }
 }
+#tech_video_area .tech_video_area_title {
+  width: 100%;
+  height: 15%;
+  background-color: #b1f8f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #tech_video_area #bannerSwiperArea {
   width: 100%;
-  height: 87%;
+  height: 85%;
+  /* padding: 15px; */
+  /* box-sizing: border-box; */
 }
-#tech_video_area h1 {
-  width: 100%;
-  height: 13%;
-}
+
 /* 最近動作 */
 #recent_area {
   grid-row: 1/2;
   grid-column: 3/4;
   animation-name: recent_area_in;
   animation-duration: 0.9s;
+}
+/* 最近動作區塊 標題 */
+#recent_area .recent_area_title {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F97068;
+}
+/* 最近動作區塊 內容 */
+#recent_area .recent_area_main {
+  width: 100%;
+  height: 85%;
 }
 @keyframes recent_area_in {
   0% {
@@ -141,21 +174,28 @@ export default {
   }
 }
 
+/* 用電圖表 */
 #power_chart_area {
   grid-row: 3/6;
   grid-column: 1/2;
-  padding: 10px;
+  /* padding: 10px; */
   box-sizing: border-box;
   animation-name: power_chart_area_in;
   animation-duration: 2s;
 }
-#power_chart_area h1 {
+#power_chart_area .power_chart_area_title {
   height: 15%;
   width: 100%;
+  background-color: #ffe66d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #power_chart_area #powerChartArea {
   height: 85%;
   width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 @keyframes power_chart_area_in {
   0% {
