@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Loading元件 -->
-    <Loading></Loading>
+    <!-- <Loading></Loading> -->
     <!-- 側邊欄元件 -->
     <Sidebar></Sidebar>
     <!-- 頁面內容view -->
@@ -10,13 +10,13 @@
 </template>
 <script>
 import Sidebar from "./components/Sidebar.vue";
-import Loading from "./components/Loading.vue";
+// import Loading from "./components/Loading.vue";
 
 export default {
   name: "App",
   components: {
     Sidebar,
-    Loading,
+    // Loading,
   },
   mounted() {
     // console.log(window.location.pathname);
@@ -60,6 +60,4 @@ body {
   width: 81.3vw;
   /* width: 80%; */
 }
-
-
 </style>
