@@ -22,25 +22,30 @@
       </nav>
     </header>
     <div id="furnitureList">
-      <!-- 家具箱子 -->
-      <div class="furnitureBox">
-        <div class="furnitureBoxHeader">
-          <div class="furnitureName">
-            <!-- 電腦 -->
-          </div>
-          <div class="furnitureLocation">
-            <!-- 公司-辦公桌 -->
-            <div>
-              <!-- 公司 -->
+      <div class="furnitureListBox" v-for="test in 4" :key="test">
+        <!-- 家具箱子 -->
+        <div class="furnitureBox">
+          <div class="furnitureBoxHeader PowerOff">
+            <div class="furnitureLocation">
+              <!-- 公司-辦公桌 -->
+              公司-辦公桌
             </div>
-            <div>
-              <!-- 辦公桌 -->
+            <div class="furnitureName">電腦</div>
+
+            <!-- 家具電源開關 -->
+            <div class="furniturePowerButton">
+              <label>
+                <input
+                  @change="PowerStateHasChanged"
+                  class="PowerButtonCheckbox"
+                  type="checkbox"
+                />
+                <span class="PowerButton"></span>
+              </label>
             </div>
           </div>
-          <!-- 家具電源開關 -->
-          <div class="furniturePowerButton"></div>
+          <div class="furnitureBoxBody"></div>
         </div>
-        <div class="furnitureBoxBody"></div>
       </div>
     </div>
   </main>
@@ -59,6 +64,18 @@ export default {
 </script>
 
 <style scoped>
+* {
+  --PowerOn: #9cec5b;
+  --PowerOff: #fb6376;
+  /* 家具名稱字體大小 */
+  --furnitureNameFontSize: 30px;
+  /* 家具位置及區域字體大小 */
+  --furnitureLocationFontSize: 16px;
+  --PowerButtonHeight: 30px;
+  --PowerButtonWidth: 70px;
+  --PowerButtonInsideCircleWidth: 28px;
+  --PowerButtonInsideCircleHeight: 28px;
+}
 .product {
   width: 81.3vw;
   height: 100vh;
@@ -105,16 +122,86 @@ export default {
 #furnitureList {
   width: 100%;
   height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+/* 家具列表箱子 */
+.furnitureListBox {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 40px 20px 10px 20px;
 }
 /* 家具箱子 */
 .furnitureBox {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
+  background-color: #fff;
 }
 /* 家具箱子 標題頭部 */
 .furnitureBox .furnitureBoxHeader {
+  width: 100%;
+  height: 22%;
+  transition: all 0.5s ease-in-out;
+  padding: 5px 10px 5px 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+/* 家具箱子 標題頭部 家具名稱 */
+.furnitureBoxHeader .furnitureName {
+  font-weight: bold;
+  font-size: var(--furnitureNameFontSize);
+}
+
+/* 家具箱子 標題頭部 家具位置及區域 */
+.furnitureBoxHeader .furnitureLocation {
+  font-weight: bold;
+  font-size: var(--furnitureLocationFontSize);
+}
+
 /* 家具箱子 內容 */
 .furnitureBox .furnitureBoxBody {
+  width: 100%;
+  height: 78%;
+}
+.PowerButton {
+  display: inline-block;
+  position: relative;
+  width: var(--PowerButtonWidth);
+  height: var(--PowerButtonHeight);
+  border: 4px solid white;
+  background-color: #e9e9ea;
+  border-radius: var(--PowerButtonHeight);
+  transition: all 0.3s ease-in-out;
+}
+.PowerButton::after {
+  content: "";
+  display: inline-block;
+  width: var(--PowerButtonInsideCircleWidth);
+  height: var(--PowerButtonInsideCircleHeight);
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  top: 3.4%;
+  left: 4%;
+  transition: all 0.3s ease-in-out;
+  /* top: calc(var(--PowerButtonHeight) - var(--PowerButtonInsideCircleWidth)); */
+}
+.PowerButtonCheckbox {
+  display: none;
+}
+.PowerButtonCheckbox:checked + span {
+  background-color: #36e461;
+}
+.PowerButtonCheckbox:checked + span::after {
+  /* background-color: #36e461; */
+  transform: translateX(calc(var(--PowerButtonInsideCircleWidth) * 1.3));
+}
+.PowerOn {
+  background-color: var(--PowerOn);
+}
+.PowerOff {
+  background-color: var(--PowerOff);
 }
 </style>
