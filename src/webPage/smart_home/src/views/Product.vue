@@ -22,7 +22,7 @@
       </nav>
     </header>
     <div id="furnitureList">
-      <div class="furnitureListBox" v-for="test in 4" :key="test">
+      <div class="furnitureListBox" v-for="test in 2" :key="test">
         <!-- 家具箱子 -->
         <div class="furnitureBox">
           <div class="furnitureBoxHeader PowerOff">
@@ -66,7 +66,9 @@ export default {
 <style scoped>
 * {
   --PowerOn: #9cec5b;
-  --PowerOff: #fb6376;
+  --PowerOff: #ff5964;
+  /* fb6376 */
+  /* FF5964 */
   /* 家具名稱字體大小 */
   --furnitureNameFontSize: 30px;
   /* 家具位置及區域字體大小 */
@@ -128,6 +130,7 @@ export default {
 /* 家具列表箱子 */
 .furnitureListBox {
   width: 50%;
+  height: 50%;
   box-sizing: border-box;
   padding: 40px 20px 10px 20px;
 }
@@ -136,6 +139,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #fff;
+  box-shadow: 1px 2px 4px 1px rgba(90, 90, 90, 0.25);
 }
 /* 家具箱子 標題頭部 */
 .furnitureBox .furnitureBoxHeader {
@@ -165,6 +169,7 @@ export default {
   width: 100%;
   height: 78%;
 }
+/* 電源開關 */
 .PowerButton {
   display: inline-block;
   position: relative;
@@ -186,7 +191,6 @@ export default {
   top: 3.4%;
   left: 4%;
   transition: all 0.3s ease-in-out;
-  /* top: calc(var(--PowerButtonHeight) - var(--PowerButtonInsideCircleWidth)); */
 }
 .PowerButtonCheckbox {
   display: none;
@@ -195,7 +199,6 @@ export default {
   background-color: #36e461;
 }
 .PowerButtonCheckbox:checked + span::after {
-  /* background-color: #36e461; */
   transform: translateX(calc(var(--PowerButtonInsideCircleWidth) * 1.3));
 }
 .PowerOn {
