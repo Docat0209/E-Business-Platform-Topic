@@ -13,7 +13,17 @@
       <div class="recent_area_title">
         <h1>最近動作</h1>
       </div>
-      <div class="recent_area_main"></div>
+      <div class="recent_area_main">
+        <!-- v-for渲染最近動作 -->
+        <div class="recent_item_box" v-for="test in 11" :key="test">
+          <div>
+            <img class="recent_arrow_icon" src="../assets/arrow.svg" alt="" />
+          </div>
+          <div class="recent_item_box_text_div">
+            <p>Lorem, laboriosam blanditiis impedit tempore?</p>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 近五天用電量折線圖條圖區塊 -->
     <div id="power_chart_area" class="item_box">
@@ -83,9 +93,6 @@ export default {
   display: grid;
   width: 81.3vw;
   height: 100vh;
-  /* grid-template-rows: 400px 30px 1fr 20px 1fr; */
-  /* grid-template-columns: 967px 30px 472px; */
-  /* 42.69% */
   grid-template-rows: 48% 3.2% 1fr 2.1% 1fr;
   grid-template-columns: 65.3% 2% 31.8%;
 }
@@ -158,9 +165,38 @@ export default {
 }
 /* 最近動作區塊 內容 */
 #recent_area .recent_area_main {
+  box-sizing: border-box;
+  padding: 5px;
   width: 100%;
   height: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* 超出去的隱藏 hidden */
+  overflow: hidden;
 }
+/* 最近動作區塊 Icon箭頭 */
+#recent_area .recent_area_main .recent_arrow_icon {
+  width: 25px;
+  height: 25px;
+  transform: rotate(90deg);
+}
+/* 最近動作區塊 最近動作列表箱子 */
+.recent_item_box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 20px;
+  width: 100%;
+  padding: 5px 0px;
+}
+/* 最近動作區塊 最近動作列表箱子 文字 */
+.recent_item_box_text_div {
+  width: 85%;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
 @keyframes recent_area_in {
   0% {
     margin-left: 800px;
