@@ -11,6 +11,18 @@
       </div>
       <div>
         <div class="accountColumn">
+          <div>
+            <img class="accountColumnAvatar" src="../assets/nene.jpg" />
+          </div>
+          <!-- <span class="accountColumnTitle"> -->
+          <!-- <font-awesome-icon :icon="['far', 'user-circle']" /> -->
+          <!-- 頭像 -->
+          <!-- </span> -->
+          <!-- <div class="accountColumnInputDiv"> -->
+          <!-- <input class="accountInput" type="text" value="NeNeWangTest" /> -->
+          <!-- </div> -->
+        </div>
+        <div class="accountColumn">
           <span class="accountColumnTitle">
             <font-awesome-icon :icon="['far', 'user-circle']" />
             帳號
@@ -97,8 +109,21 @@ export default {
   box-sizing: border-box;
   width: 100%;
   display: flex;
+  height: 100%;
+  /* align-items: ; */
   padding: 0px 10px 0px 20px;
+  margin: 20px 0px;
   /* justify-content: center; */
+}
+.accountColumnAvatar {
+  /* margin-top: 15px; */
+  width: 125px;
+  height: 125px;
+  border: 1px solid gray;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  /* margin-bottom: 12px; */
 }
 /* 欄位名稱樣式 */
 .accountColumnTitle {
