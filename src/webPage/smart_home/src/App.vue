@@ -19,6 +19,12 @@ export default {
     // Loading,
   },
   mounted() {
+    // 監聽重新整理
+    // window.onunload = function () {
+    // document.location.href = window.location.pathname + "/";
+    // alert((document.location.href = window.location.pathname + "/"));
+    // return (document.location.href = window.location.pathname + "/");
+    // };
     // console.log(window.location.pathname);
     let loadingWrapper = document.getElementById("loading_wrapper");
     setTimeout(function () {
