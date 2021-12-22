@@ -4,25 +4,41 @@
     <!--  -->
     <div id="accountBox">
       <div id="accountTitleDiv">
-        <h1 id="accountTitle">個人資料</h1>
+        <h1 id="accountTitle">
+          個人資料
+          <font-awesome-icon :icon="['far', 'address-card']" />
+        </h1>
       </div>
       <div>
         <div class="accountColumn">
-          <span class="accountColumnTitle">帳號</span>
-          <div>
-            <input class="accountInput" type="text" value="" />
+          <span class="accountColumnTitle">
+            <font-awesome-icon :icon="['far', 'user-circle']" />
+            帳號
+          </span>
+          <div class="accountColumnInputDiv">
+            <input class="accountInput" type="text" value="NeNeWangTest" />
           </div>
         </div>
         <div class="accountColumn">
-          <span class="accountColumnTitle">名稱</span>
-          <div>
-            <input class="accountInput" type="text" value="" />
+          <span class="accountColumnTitle">
+            <font-awesome-icon :icon="['far', 'user']" />
+            名稱
+          </span>
+          <div class="accountColumnInputDiv">
+            <input class="accountInput" type="text" value="NeNe Wang" />
           </div>
         </div>
         <div class="accountColumn">
-          <span class="accountColumnTitle">電子信箱</span>
-          <div>
-            <input class="accountInput" type="text" value="" />
+          <span class="accountColumnTitle">
+            <font-awesome-icon :icon="['far', 'envelope']" />
+            電子信箱
+          </span>
+          <div class="accountColumnInputDiv">
+            <input
+              class="accountInput"
+              type="text"
+              value="NeNeWangTest@gmail.com"
+            />
           </div>
         </div>
         <!-- <div>
@@ -87,10 +103,14 @@ export default {
 /* 欄位名稱樣式 */
 .accountColumnTitle {
   font-size: var(--ColumnTitleFontSize);
-  width: 10%;
+  width: 13%;
+}
+/* 欄位輸入區塊 */
+.accountColumnInputDiv {
+  width: 40%;
 }
 /* 欄位輸入樣式 Input */
-.accountInput {
+.accountColumnInputDiv .accountInput {
   width: 100%;
   border: none;
   font-size: 28px;
