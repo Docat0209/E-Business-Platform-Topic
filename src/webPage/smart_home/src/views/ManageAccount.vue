@@ -9,11 +9,23 @@
           <font-awesome-icon :icon="['far', 'address-card']" />
         </h1>
       </div>
-      <div>
+      <div id="accountMainDiv">
         <div class="accountColumn">
           <div>
-            <img class="accountColumnAvatar" src="../assets/nene.jpg" />
+            <!-- API接頭像src -->
+            <img
+              class="accountColumnAvatar"
+              src="http://localhost:8080/img/nene.aba9e214.jpg"
+            />
+            <!-- 更改頭像 -->
+
+            <input
+              accept=".bmp, .jpg, .jpeg, .png, .gif"
+              type="file"
+              id="accountColumnAvatarInput"
+            />
           </div>
+
           <!-- <span class="accountColumnTitle"> -->
           <!-- <font-awesome-icon :icon="['far', 'user-circle']" /> -->
           <!-- 頭像 -->
@@ -57,6 +69,10 @@
           <span>頭像</span>
           <input class="accountInput" type="file" />
         </div> -->
+      </div>
+      <div id="accountFooterDiv">
+        <!-- 上方Input有變動顯示下方按鈕 -->
+        <!-- <button id="confirmModify">確認修改</button> -->
       </div>
       <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
     </div>
@@ -105,25 +121,26 @@ export default {
 #accountTitleDiv #accountTitle {
   font-size: 40px;
 }
-.accountColumn {
+/* 個人資料主要區塊 */
+#accountMainDiv {
+  height: 80%;
+  width: 100%;
+  /* box-sizing: border-box; */
+}
+/* 個人資料主要區塊 欄位 */
+#accountMainDiv .accountColumn {
   box-sizing: border-box;
   width: 100%;
   display: flex;
-  height: 100%;
-  /* align-items: ; */
-  padding: 0px 10px 0px 20px;
-  margin: 20px 0px;
-  /* justify-content: center; */
+  padding: 15px 10px 15px 20px;
 }
 .accountColumnAvatar {
-  /* margin-top: 15px; */
   width: 125px;
   height: 125px;
   border: 1px solid gray;
   border-radius: 50%;
   -o-object-fit: cover;
   object-fit: cover;
-  /* margin-bottom: 12px; */
 }
 /* 欄位名稱樣式 */
 .accountColumnTitle {
@@ -142,5 +159,30 @@ export default {
   border-bottom: 1px solid rgb(204, 204, 204);
   outline: none;
   padding-top: 5px;
+}
+/* 個人資料底部區塊 */
+#accountFooterDiv {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+/* 個人資料底部區塊 確認修改按鈕 */
+#accountFooterDiv #confirmModify {
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.253);
+  background-color: #19d858;
+  /* padding: 10px 20px 10px 20px; */
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 20px 50px 20px 50px;
+  box-sizing: border-box;
+  transition-duration: 0.4s;
+}
+#accountFooterDiv #confirmModify:hover {
+  background-color: #11a743;
 }
 </style>
