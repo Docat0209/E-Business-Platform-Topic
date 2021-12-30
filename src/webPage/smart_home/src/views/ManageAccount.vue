@@ -72,7 +72,7 @@
       </div>
       <div id="accountFooterDiv">
         <!-- 上方Input有變動顯示下方按鈕 -->
-        <!-- <button id="confirmModify">確認修改</button> -->
+        <button id="confirmModify">確認修改</button>
       </div>
       <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
     </div>
@@ -109,6 +109,8 @@ export default {
   height: 100%;
   background-color: #fff;
   box-shadow: 0px 2px 3px 1px rgba(90, 90, 90, 0.25);
+  box-sizing: border-box;
+  padding: 20px;
 }
 /* 個人資料標題區塊 */
 #accountTitleDiv {
