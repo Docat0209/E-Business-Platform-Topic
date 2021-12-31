@@ -9,67 +9,7 @@
           <font-awesome-icon :icon="['far', 'address-card']" />
         </h1>
       </div>
-      <div id="accountMainDiv">
-        <div class="accountColumn">
-          <div>
-            <!-- API接頭像src -->
-            <img
-              class="accountColumnAvatar"
-              src="http://localhost:8080/img/nene.aba9e214.jpg"
-            />
-            <!-- 更改頭像 -->
-
-            <input
-              accept=".bmp, .jpg, .jpeg, .png, .gif"
-              type="file"
-              id="accountColumnAvatarInput"
-            />
-          </div>
-
-          <!-- <span class="accountColumnTitle"> -->
-          <!-- <font-awesome-icon :icon="['far', 'user-circle']" /> -->
-          <!-- 頭像 -->
-          <!-- </span> -->
-          <!-- <div class="accountColumnInputDiv"> -->
-          <!-- <input class="accountInput" type="text" value="NeNeWangTest" /> -->
-          <!-- </div> -->
-        </div>
-        <div class="accountColumn">
-          <span class="accountColumnTitle">
-            <font-awesome-icon :icon="['far', 'user-circle']" />
-            帳號
-          </span>
-          <div class="accountColumnInputDiv">
-            <input class="accountInput" type="text" value="NeNeWangTest" />
-          </div>
-        </div>
-        <div class="accountColumn">
-          <span class="accountColumnTitle">
-            <font-awesome-icon :icon="['far', 'user']" />
-            名稱
-          </span>
-          <div class="accountColumnInputDiv">
-            <input class="accountInput" type="text" value="NeNe Wang" />
-          </div>
-        </div>
-        <div class="accountColumn">
-          <span class="accountColumnTitle">
-            <font-awesome-icon :icon="['far', 'envelope']" />
-            電子信箱
-          </span>
-          <div class="accountColumnInputDiv">
-            <input
-              class="accountInput"
-              type="text"
-              value="NeNeWangTest@gmail.com"
-            />
-          </div>
-        </div>
-        <!-- <div>
-          <span>頭像</span>
-          <input class="accountInput" type="file" />
-        </div> -->
-      </div>
+      <AccountMainDiv></AccountMainDiv>
       <div id="accountFooterDiv">
         <!-- 上方Input有變動顯示下方按鈕 -->
         <button id="confirmModify">確認修改</button>
@@ -80,8 +20,12 @@
 </template>
 
 <script>
+import AccountMainDiv from "../components/AccountMainDiv.vue";
 export default {
   name: "ManageAccount",
+  components: {
+    AccountMainDiv,
+  },
   data() {
     return {
       accountData: null,
@@ -94,9 +38,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  --ColumnTitleFontSize: 32px;
-}
+
 .account {
   width: 81.3vw;
   height: 100vh;
@@ -127,40 +69,6 @@ export default {
 #accountMainDiv {
   height: 80%;
   width: 100%;
-  /* box-sizing: border-box; */
-}
-/* 個人資料主要區塊 欄位 */
-#accountMainDiv .accountColumn {
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  padding: 15px 10px 15px 20px;
-}
-.accountColumnAvatar {
-  width: 125px;
-  height: 125px;
-  border: 1px solid gray;
-  border-radius: 50%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-/* 欄位名稱樣式 */
-.accountColumnTitle {
-  font-size: var(--ColumnTitleFontSize);
-  width: 13%;
-}
-/* 欄位輸入區塊 */
-.accountColumnInputDiv {
-  width: 40%;
-}
-/* 欄位輸入樣式 Input */
-.accountColumnInputDiv .accountInput {
-  width: 100%;
-  border: none;
-  font-size: 28px;
-  border-bottom: 1px solid rgb(204, 204, 204);
-  outline: none;
-  padding-top: 5px;
 }
 /* 個人資料底部區塊 */
 #accountFooterDiv {
