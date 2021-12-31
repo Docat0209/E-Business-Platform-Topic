@@ -43,13 +43,13 @@ export default {
   data() {
     return {
       //首頁路徑
-      HomePath: window.location.pathname,
+      HomePath: "/",
       // 管理產品路徑
-      manageProductPath: window.location.pathname + "manage/product",
+      manageProductPath: "/manage/product",
       // 產品列表路徑
-      listProductPath: window.location.pathname + "list/product",
+      listProductPath: "/list/product",
       // 帳號相關路徑
-      manageAccountPath: window.location.pathname + "manage/account",
+      manageAccountPath: "/manage/account",
     };
   },
 };
