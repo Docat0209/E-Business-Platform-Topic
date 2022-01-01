@@ -26,6 +26,9 @@
           required
           type="text"
           :value="userInfo.name"
+          @keyup="CheckIfmodify($event)"
+          @change="CheckIfmodify($event)"
+          data-type="name"
         />
       </div>
     </div>
@@ -40,6 +43,9 @@
           required
           type="text"
           :value="userInfo.account"
+          @keyup="CheckIfmodify($event)"
+          @change="CheckIfmodify($event)"
+          data-type="account"
         />
       </div>
     </div>
@@ -59,9 +65,12 @@
       <div class="accountColumnInputDiv">
         <input
           class="accountInput"
-          type="password"
+          :type="userInfo.password == '載入中' ? 'text' : 'password'"
           required
           :value="userInfo.password"
+          @keyup="CheckIfmodify($event)"
+          @change="CheckIfmodify($event)"
+          data-type="password"
         />
       </div>
     </div>
@@ -75,6 +84,9 @@
           class="accountInput"
           type="text"
           :value="userInfo.country == null ? '未設定' : userInfo.country"
+          @keyup="CheckIfmodify($event)"
+          @change="CheckIfmodify($event)"
+          data-type="country"
         />
       </div>
     </div>
@@ -90,6 +102,9 @@
           class="accountInput"
           type="text"
           :value="userInfo.language == null ? '未設定' : userInfo.language"
+          @keyup="CheckIfmodify($event)"
+          @change="CheckIfmodify($event)"
+          data-type="language"
         />
       </div>
     </div>
@@ -102,24 +117,47 @@ export default {
 
   data() {
     return {
-      // injectCheck: false,
-      userInfo: "",
+      // 初始化使用者資料
+      userInfo: {
+        name: "載入中",
+        account: "載入中",
+        password: "載入中",
+        status: "載入中",
+        country: "載入中",
+        language: "載入中",
+      },
+      afterUserInfo: null,
     };
   },
-  async created() {
+  created() {
     const __this = this;
-    await fetch("/api/User/2", {})
-      .then((response) => {
-        return response.json();
-      })
-      .then((jsonData) => {
-        __this.userInfo = jsonData[0];
-      })
-      .catch((err) => {
-        console.log("錯誤", err);
-      });
+    // API取使用者資料
+    setTimeout(() => {
+      fetch("/api/User/2", {})
+        .then((response) => {
+          return response.json();
+        })
+        .then((jsonData) => {
+          __this.userInfo = jsonData[0];
+          // 拷貝物件，CallByValue
+          __this.afterUserInfo = { ...__this.userInfo };
+        })
+        .catch((err) => {
+          console.log("錯誤", err);
+        });
+    }, 300);
   },
-  mounted() {},
+  methods: {
+    // 檢查是否有變動資料->顯示確定按鈕進行更新
+    CheckIfmodify: function (event) {
+      const __this = this;
+      let TargetDom = event.currentTarget;
+      let TargetType = TargetDom.dataset.type;
+      let TargetValue = TargetDom.value;
+      __this.afterUserInfo[TargetType] = TargetValue;
+      __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
+    },
+  },
 };
 </script>
 

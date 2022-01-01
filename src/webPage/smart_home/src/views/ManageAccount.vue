@@ -8,12 +8,14 @@
           <font-awesome-icon :icon="['far', 'address-card']" />
         </h1>
       </div>
-      <AccountMainDiv></AccountMainDiv>
+      <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
+      <AccountMainDiv @update="hasUpdate($event)"></AccountMainDiv>
       <div id="accountFooterDiv">
         <!-- 上方Input有變動顯示下方按鈕 -->
-        <button id="confirmModify">確認修改</button>
+        <button id="confirmModify" @click="confirmed()" style="display: none">
+          確認修改
+        </button>
       </div>
-      <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
     </div>
   </main>
 </template>
@@ -24,7 +26,6 @@ export default {
   name: "ManageAccount",
   components: {
     AccountMainDiv,
-    
   },
 
   data() {
@@ -32,8 +33,35 @@ export default {
       accountData: null,
     };
   },
-  mounted() {
-    // 先從API取資料，再進行渲染
+  methods: {
+    // 檢查是否有修改資料
+    hasUpdate(val) {
+      // 原始資料 rawData
+      let beforeVal = val[0];
+      // 可能經過修改的資料
+      let afterVal = val[1];
+
+      let confirmModifyBtn = document.querySelector("#confirmModify");
+      // 對比之後不一樣表示有修改 JSON 字串
+      if (!(JSON.stringify(beforeVal) == JSON.stringify(afterVal))) {
+        // 有修改，顯示確認按鈕
+        confirmModifyBtn.style.display = "inline";
+      } else {
+        confirmModifyBtn.style.display = "none";
+      }
+    },
+    // 按下確認按鈕
+    confirmed() {
+      fetch("/api/User/2", {
+        method:"PUT",
+
+      })
+        .then(() => {})
+        .then(() => {})
+        .catch((err) => {
+          console.log("錯誤", err);
+        });
+    },
   },
 };
 </script>
@@ -94,5 +122,6 @@ export default {
 }
 #accountFooterDiv #confirmModify:hover {
   background-color: #11a743;
+  cursor: pointer;
 }
 </style>
