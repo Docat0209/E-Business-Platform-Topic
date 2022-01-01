@@ -9,8 +9,13 @@
         </h1>
       </div>
       <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
-      <form action="/api/v1/user/1" method="post" @submit="confirmed($event)">
-        <input type="hidden" name="_method" value="put" />
+      <form
+        method="post"
+        action="/api/user/1"
+        enctype="multipart/form-data"
+        @submit="confirmed($event)"
+      >
+        <!-- <input type="hidden" name="_method" value="put" /> -->
 
         <AccountMainDiv @update="hasUpdate($event)"></AccountMainDiv>
         <div id="accountFooterDiv">
@@ -46,7 +51,7 @@ export default {
       let beforeVal = val[0];
       // 可能經過修改的資料
       let afterVal = val[1];
-
+      // console.log(afterVal);
       let confirmModifyBtn = document.querySelector("#confirmModify");
       // 對比之後不一樣表示有修改 JSON 字串
       if (!(JSON.stringify(beforeVal) == JSON.stringify(afterVal))) {
@@ -59,23 +64,39 @@ export default {
     },
     // 按下確認按鈕
     confirmed(event) {
-      // preventDefault();
+      // // preventDefault();
       event.preventDefault();
+      // const __this = this;
 
       // event.currentTarget.submit();
-      // const __this = this;
-      // fetch("/api/v1/user/1", {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      //   body: __this.afterVal,
-      // })
-      //   .then((response) => response.json())
-      //   .then((json) => console.log(json))
-      //   .catch((err) => {
-      //     console.log("錯誤", err);
-      //   });
+      // _method
+      // __this.afterVal["_method"] = "PUT";
+      // console.log(__this.afterVal);
+      // console.log(typeof __this.afterVal);
+      var form_data = new FormData();
+      form_data.append("name", "Kalan");
+      form_data.append("account", "sdsa");
+      // for (var key in __this.afterVal) {
+      // form_data.append(key, __this.afterVal[key]);
+      // form_data.append("_method", "PUT");
+      // }
+      console.log(form_data.get("name"));
+      // console.log(typeof __this.afterVal);
+
+      let url = "/api/user/1";
+      fetch(url, {
+        method: "put",
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          // "Accept": "application/json",
+        },
+        body: form_data,
+      })
+        .then((response) => response)
+        .then((json) => console.log(json))
+        .catch((err) => {
+          console.log("錯誤", err);
+        });
     },
   },
 };

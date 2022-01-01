@@ -5,15 +5,18 @@
         <!-- API接頭像src -->
         <!-- src="http://localhost:8080/img/nene.aba9e214.jpg" -->
         <img
+          id="avatarImg"
           class="accountColumnAvatar"
-          
-          :src="'/public'+userInfo.thumbnail_path"
+          :src="'/public' + userInfo.thumbnail_path"
         />
         <!-- 更改頭像 -->
         <input
           accept=".bmp, .jpg, .jpeg, .png, .gif"
           type="file"
+          data-type="thumbnail_path"
           id="accountColumnAvatarInput"
+          @change="CheckIfmodify($event)"
+          name="thumbnail_path"
         />
       </div>
     </div>
@@ -31,6 +34,7 @@
           @keyup="CheckIfmodify($event)"
           @change="CheckIfmodify($event)"
           data-type="name"
+          name="name"
         />
       </div>
     </div>
@@ -48,6 +52,7 @@
           @keyup="CheckIfmodify($event)"
           @change="CheckIfmodify($event)"
           data-type="account"
+           name="account"
         />
       </div>
     </div>
@@ -85,6 +90,7 @@
         <input
           class="accountInput"
           type="text"
+          name="country"
           :value="userInfo.country == null ? '未設定' : userInfo.country"
           @keyup="CheckIfmodify($event)"
           @change="CheckIfmodify($event)"
@@ -103,6 +109,7 @@
         <input
           class="accountInput"
           type="text"
+          name="language"
           :value="userInfo.language == null ? '未設定' : userInfo.language"
           @keyup="CheckIfmodify($event)"
           @change="CheckIfmodify($event)"
@@ -127,7 +134,7 @@ export default {
         status: "載入中",
         country: "載入中",
         language: "載入中",
-        thumbnail_path:"/storage/thumbnail/defaultAvatar.jpg",
+        thumbnail_path: "/storage/thumbnail/defaultAvatar.jpg",
       },
       afterUserInfo: null,
     };
@@ -143,7 +150,7 @@ export default {
         .then((jsonData) => {
           __this.userInfo = jsonData.data;
           // 拷貝物件，CallByValue
-          console.log(__this.userInfo);
+          // console.log(__this.userInfo);
           __this.afterUserInfo = { ...__this.userInfo };
         })
         .catch((err) => {
@@ -158,8 +165,23 @@ export default {
       let TargetDom = event.currentTarget;
       let TargetType = TargetDom.dataset.type;
       let TargetValue = TargetDom.value;
-      __this.afterUserInfo[TargetType] = TargetValue;
-      __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
+
+      if (TargetType == "thumbnail_path") {
+        let input = event.target;
+        // console.log(input.files[0]);
+        if (input.files) {
+          let fr = new FileReader();
+          fr.onload = (e) => {
+            document.getElementById("avatarImg").src = e.target.result;
+          };
+          fr.readAsDataURL(input.files[0]);
+        }
+         __this.afterUserInfo[TargetType] = input.files[0];
+         __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
+      } else {
+        __this.afterUserInfo[TargetType] = TargetValue;
+        __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
+      }
     },
   },
 };
