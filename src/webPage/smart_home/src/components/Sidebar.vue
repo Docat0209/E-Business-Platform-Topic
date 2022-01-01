@@ -14,7 +14,8 @@
         <img src="../assets/nene.jpg" class="user_thumbnail" />
         <hr class="user_hr" />
         <!-- API -> 將使用者名稱放在這 -->
-        <span class="user_name">NeNe Wang</span>
+
+        <span class="user_name">{{ userData.name }}</span>
       </div>
       <ul>
         <li class="link_list">
@@ -40,6 +41,9 @@
 <script>
 export default {
   name: "Sidebar",
+  props: {
+    userData: {},
+  },
   data() {
     return {
       //首頁路徑
@@ -50,7 +54,21 @@ export default {
       listProductPath: "/list/product",
       // 帳號相關路徑
       manageAccountPath: "/manage/account",
+      // userData: null,
     };
+  },
+  mounted() {
+    // const __this = this;
+    // fetch("/api/User/2", {})
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+    //     __this.userData = jsonData[0];
+    //   })
+    //   .catch((err) => {
+    //     console.log("錯誤", err);
+    //   });
   },
 };
 </script>

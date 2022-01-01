@@ -1,7 +1,6 @@
 <template>
   <main class="account">
     <!-- <h1>帳號相關</h1> -->
-    <!--  -->
     <div id="accountBox">
       <div id="accountTitleDiv">
         <h1 id="accountTitle">
@@ -25,7 +24,9 @@ export default {
   name: "ManageAccount",
   components: {
     AccountMainDiv,
+    
   },
+
   data() {
     return {
       accountData: null,
@@ -38,7 +39,6 @@ export default {
 </script>
 
 <style scoped>
-
 .account {
   width: 81.3vw;
   height: 100vh;

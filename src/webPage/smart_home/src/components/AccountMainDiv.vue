@@ -17,45 +17,109 @@
     </div>
     <div class="accountColumn">
       <span class="accountColumnTitle">
-        <font-awesome-icon :icon="['far', 'user-circle']" />
-        帳號
-      </span>
-      <div class="accountColumnInputDiv">
-        <input class="accountInput" type="text" value="NeNeWangTest" />
-      </div>
-    </div>
-    <div class="accountColumn">
-      <span class="accountColumnTitle">
         <font-awesome-icon :icon="['far', 'user']" />
         名稱
       </span>
       <div class="accountColumnInputDiv">
-        <input class="accountInput" type="text" value="NeNe Wang" />
+        <input
+          class="accountInput"
+          required
+          type="text"
+          :value="userInfo.name"
+        />
       </div>
     </div>
     <div class="accountColumn">
       <span class="accountColumnTitle">
-        <font-awesome-icon :icon="['far', 'envelope']" />
-        電子信箱
+        <font-awesome-icon :icon="['far', 'user-circle']" />
+        帳號
+      </span>
+      <div class="accountColumnInputDiv">
+        <input
+          class="accountInput"
+          required
+          type="text"
+          :value="userInfo.account"
+        />
+      </div>
+    </div>
+    <div class="accountColumn">
+      <span class="accountColumnTitle">
+        <font-awesome-icon
+          style="
+            box-sizing: border-box;
+            padding: 1px;
+            margin-left: 1px;
+            margin-right: 2px;
+          "
+          :icon="['fas', 'lock']"
+        />
+        密碼
+      </span>
+      <div class="accountColumnInputDiv">
+        <input
+          class="accountInput"
+          type="password"
+          required
+          :value="userInfo.password"
+        />
+      </div>
+    </div>
+    <div class="accountColumn">
+      <span class="accountColumnTitle">
+        <font-awesome-icon :icon="['fas', 'globe-asia']" />
+        國家
       </span>
       <div class="accountColumnInputDiv">
         <input
           class="accountInput"
           type="text"
-          value="NeNeWangTest@gmail.com"
+          :value="userInfo.country == null ? '未設定' : userInfo.country"
         />
       </div>
     </div>
-    <!-- <div>
-          <span>頭像</span>
-          <input class="accountInput" type="file" />
-        </div> -->
+    <div class="accountColumn">
+      <span class="accountColumnTitle"
+        ><font-awesome-icon
+          style="padding-right: 5px; box-sizing: border-box"
+          :icon="['fas', 'language']"
+        />語言
+      </span>
+      <div class="accountColumnInputDiv">
+        <input
+          class="accountInput"
+          type="text"
+          :value="userInfo.language == null ? '未設定' : userInfo.language"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "AccountMainDiv",
+
+  data() {
+    return {
+      // injectCheck: false,
+      userInfo: "",
+    };
+  },
+  async created() {
+    const __this = this;
+    await fetch("/api/User/2", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonData) => {
+        __this.userInfo = jsonData[0];
+      })
+      .catch((err) => {
+        console.log("錯誤", err);
+      });
+  },
+  mounted() {},
 };
 </script>
 

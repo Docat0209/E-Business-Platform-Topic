@@ -3,7 +3,7 @@
     <!-- Loading元件 -->
     <!-- <Loading></Loading> -->
     <!-- 側邊欄元件 -->
-    <Sidebar></Sidebar>
+    <Sidebar :userData="userData"></Sidebar>
     <!-- 頁面內容view -->
     <router-view />
   </div>
@@ -14,18 +14,29 @@ import Sidebar from "./components/Sidebar.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      userData: "",
+    };
+  },
   components: {
     Sidebar,
     // Loading,
   },
+  created() {
+    const __this = this;
+    fetch("/api/User/2", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonData) => {
+        __this.userData = jsonData[0];
+      })
+      .catch((err) => {
+        console.log("錯誤", err);
+      });
+  },
   mounted() {
-    // 監聽重新整理
-    // window.onunload = function () {
-    // document.location.href = window.location.pathname + "/";
-    // alert((document.location.href = window.location.pathname + "/"));
-    // return (document.location.href = window.location.pathname + "/");
-    // };
-    // console.log(window.location.pathname);
     let loadingWrapper = document.getElementById("loading_wrapper");
     setTimeout(function () {
       loadingWrapper.style.opacity = "0";
