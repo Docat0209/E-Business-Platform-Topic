@@ -53,11 +53,13 @@ export default {
     // 按下確認按鈕
     confirmed() {
       fetch("/api/User/2", {
-        method:"PUT",
-
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-        .then(() => {})
-        .then(() => {})
+        .then((response) => response.json())
+        .then((json) => console.log(json))
         .catch((err) => {
           console.log("錯誤", err);
         });
