@@ -3,8 +3,14 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://106.107.216.9/api/',
+                target: 'http://localhost/smartHomeApi/public/api/v1/',
                 pathRewrite: { '^/api': '' },
+                changeOrigin: true,
+                ws: true
+            },
+            '/public': {
+                target: 'http://localhost/smartHomeApi/public',
+                pathRewrite: { '^/public': '' },
                 changeOrigin: true,
                 ws: true
             },

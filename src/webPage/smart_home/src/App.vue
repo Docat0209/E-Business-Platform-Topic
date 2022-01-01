@@ -25,12 +25,13 @@ export default {
   },
   created() {
     const __this = this;
-    fetch("/api/User/2", {})
+    fetch("/api/user/1", {})
       .then((response) => {
         return response.json();
       })
       .then((jsonData) => {
-        __this.userData = jsonData[0];
+        // console.log(jsonData.data);
+        __this.userData = jsonData.data;
       })
       .catch((err) => {
         console.log("錯誤", err);

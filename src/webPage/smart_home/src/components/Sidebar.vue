@@ -11,7 +11,11 @@
       </div>
       <div class="user_info">
         <!-- API -> 將使用者頭像路徑放在src -->
-        <img src="../assets/nene.jpg" class="user_thumbnail" />
+        <!-- src="../assets/nene.jpg"  -->
+        <img
+          :src="'/public' + userData.thumbnail_path"
+          class="user_thumbnail"
+        />
         <hr class="user_hr" />
         <!-- API -> 將使用者名稱放在這 -->
 

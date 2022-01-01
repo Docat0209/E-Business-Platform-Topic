@@ -3,9 +3,11 @@
     <div class="accountColumn">
       <div>
         <!-- API接頭像src -->
+        <!-- src="http://localhost:8080/img/nene.aba9e214.jpg" -->
         <img
           class="accountColumnAvatar"
-          src="http://localhost:8080/img/nene.aba9e214.jpg"
+          
+          :src="'/public'+userInfo.thumbnail_path"
         />
         <!-- 更改頭像 -->
         <input
@@ -49,7 +51,7 @@
         />
       </div>
     </div>
-    <div class="accountColumn">
+    <!-- <div class="accountColumn">
       <span class="accountColumnTitle">
         <font-awesome-icon
           style="
@@ -73,7 +75,7 @@
           data-type="password"
         />
       </div>
-    </div>
+    </div> -->
     <div class="accountColumn">
       <span class="accountColumnTitle">
         <font-awesome-icon :icon="['fas', 'globe-asia']" />
@@ -125,6 +127,7 @@ export default {
         status: "載入中",
         country: "載入中",
         language: "載入中",
+        thumbnail_path:"/storage/thumbnail/defaultAvatar.jpg",
       },
       afterUserInfo: null,
     };
@@ -133,13 +136,14 @@ export default {
     const __this = this;
     // API取使用者資料
     setTimeout(() => {
-      fetch("/api/User/2", {})
+      fetch("/api/user/1", {})
         .then((response) => {
           return response.json();
         })
         .then((jsonData) => {
-          __this.userInfo = jsonData[0];
+          __this.userInfo = jsonData.data;
           // 拷貝物件，CallByValue
+          console.log(__this.userInfo);
           __this.afterUserInfo = { ...__this.userInfo };
         })
         .catch((err) => {

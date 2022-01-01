@@ -9,13 +9,17 @@
         </h1>
       </div>
       <!-- 帳號 更改密碼 名稱 電子信箱  頭像 -->
-      <AccountMainDiv @update="hasUpdate($event)"></AccountMainDiv>
-      <div id="accountFooterDiv">
-        <!-- 上方Input有變動顯示下方按鈕 -->
-        <button id="confirmModify" @click="confirmed()" style="display: none">
-          確認修改
-        </button>
-      </div>
+      <form action="/api/v1/user/1" method="post" @submit="confirmed($event)">
+        <input type="hidden" name="_method" value="put" />
+
+        <AccountMainDiv @update="hasUpdate($event)"></AccountMainDiv>
+        <div id="accountFooterDiv">
+          <!-- 上方Input有變動顯示下方按鈕 -->
+          <button id="confirmModify" type="submit" style="display: none">
+            確認修改
+          </button>
+        </div>
+      </form>
     </div>
   </main>
 </template>
@@ -31,11 +35,13 @@ export default {
   data() {
     return {
       accountData: null,
+      afterVal: null,
     };
   },
   methods: {
     // 檢查是否有修改資料
     hasUpdate(val) {
+      const __this = this;
       // 原始資料 rawData
       let beforeVal = val[0];
       // 可能經過修改的資料
@@ -45,24 +51,31 @@ export default {
       // 對比之後不一樣表示有修改 JSON 字串
       if (!(JSON.stringify(beforeVal) == JSON.stringify(afterVal))) {
         // 有修改，顯示確認按鈕
+        __this.afterVal = afterVal;
         confirmModifyBtn.style.display = "inline";
       } else {
         confirmModifyBtn.style.display = "none";
       }
     },
     // 按下確認按鈕
-    confirmed() {
-      fetch("/api/User/2", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json))
-        .catch((err) => {
-          console.log("錯誤", err);
-        });
+    confirmed(event) {
+      // preventDefault();
+      event.preventDefault();
+
+      // event.currentTarget.submit();
+      // const __this = this;
+      // fetch("/api/v1/user/1", {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      //   body: __this.afterVal,
+      // })
+      //   .then((response) => response.json())
+      //   .then((json) => console.log(json))
+      //   .catch((err) => {
+      //     console.log("錯誤", err);
+      //   });
     },
   },
 };
