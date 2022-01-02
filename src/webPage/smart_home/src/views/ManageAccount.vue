@@ -64,35 +64,36 @@ export default {
     },
     // 按下確認按鈕
     confirmed(event) {
-      // // preventDefault();
       event.preventDefault();
-      // const __this = this;
+      const __this = this;
 
-      // event.currentTarget.submit();
-      // _method
+      var form_data = new FormData();
+      // form_data.append("name", "Kalan");
+      // form_data.append("account", "sdsa");
       // __this.afterVal["_method"] = "PUT";
       // console.log(__this.afterVal);
-      // console.log(typeof __this.afterVal);
-      var form_data = new FormData();
-      form_data.append("name", "Kalan");
-      form_data.append("account", "sdsa");
-      // for (var key in __this.afterVal) {
-      // form_data.append(key, __this.afterVal[key]);
+      for (var key in __this.afterVal) {
+      form_data.append(key, __this.afterVal[key]);
       // form_data.append("_method", "PUT");
-      // }
-      console.log(form_data.get("name"));
+      }
+      // console.log(form_data.get("_method"));
+      // console.log(form_data.get("name"));
       // console.log(typeof __this.afterVal);
 
       let url = "/api/user/1";
       fetch(url, {
-        method: "put",
+        method: "post",
         headers: {
+          // "Content-Type": "application/json",
           // "Content-Type": "multipart/form-data",
-          // "Accept": "application/json",
+          Accept: "application/json",
         },
         body: form_data,
       })
-        .then((response) => response)
+        .then((response) => {
+          // console.log(response);
+          return response.json();
+        })
         .then((json) => console.log(json))
         .catch((err) => {
           console.log("錯誤", err);
