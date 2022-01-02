@@ -67,34 +67,33 @@ export default {
       event.preventDefault();
       const __this = this;
 
+      //因為含有圖片，所以要Object轉成FormData再送出
       var form_data = new FormData();
-      // form_data.append("name", "Kalan");
-      // form_data.append("account", "sdsa");
-      // __this.afterVal["_method"] = "PUT";
-      // console.log(__this.afterVal);
       for (var key in __this.afterVal) {
-      form_data.append(key, __this.afterVal[key]);
-      // form_data.append("_method", "PUT");
+        form_data.append(key, __this.afterVal[key]);
       }
-      // console.log(form_data.get("_method"));
-      // console.log(form_data.get("name"));
-      // console.log(typeof __this.afterVal);
 
-      let url = "/api/user/1";
-      fetch(url, {
+      fetch("/api/user/1", {
         method: "post",
-        headers: {
-          // "Content-Type": "application/json",
-          // "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
+        // headers: {
+        //   Accept: "application/json",
+        // },
         body: form_data,
       })
         .then((response) => {
-          // console.log(response);
           return response.json();
         })
-        .then((json) => console.log(json))
+        .then((json) => {
+          if(json.success){
+            // console.log(json);
+            // 呼叫父元件 重新抓取使用者資料
+            __this.$emit("AccountHasModify",true);
+            // __this.$forceUpdate();
+          }
+          else{
+             console.log(json.message);
+          }
+        })
         .catch((err) => {
           console.log("錯誤", err);
         });

@@ -5,7 +5,10 @@
     <!-- 側邊欄元件 -->
     <Sidebar :userData="userData"></Sidebar>
     <!-- 頁面內容view -->
-    <router-view />
+    <router-view
+      v-if="RouterAlive"
+      @AccountHasModify="AccountHasModifyMethod()"
+    />
   </div>
 </template>
 <script>
@@ -17,6 +20,7 @@ export default {
   data() {
     return {
       userData: "",
+      RouterAlive: true,
     };
   },
   components: {
@@ -24,18 +28,7 @@ export default {
     // Loading,
   },
   created() {
-    const __this = this;
-    fetch("/api/user/1", {})
-      .then((response) => {
-        return response.json();
-      })
-      .then((jsonData) => {
-        // console.log(jsonData.data);
-        __this.userData = jsonData.data;
-      })
-      .catch((err) => {
-        console.log("錯誤", err);
-      });
+    this.GetAccountInfo(1);
   },
   mounted() {
     let loadingWrapper = document.getElementById("loading_wrapper");
@@ -46,6 +39,33 @@ export default {
         loadingWrapper.style.display = "none";
       }, 800);
     }, 1000);
+  },
+  methods: {
+    reloadRouteView() {
+      this.RouterAlive = false;
+      this.$nextTick(() => {
+        this.RouterAlive = true;
+      });
+    },
+    GetAccountInfo(id) {
+      const __this = this;
+      fetch("/api/user/" + id, {})
+        .then((response) => {
+          return response.json();
+        })
+        .then((jsonData) => {
+          __this.userData = jsonData.data;
+        })
+        .catch((err) => {
+          console.log("錯誤", err);
+        });
+    },
+    AccountHasModifyMethod() {
+      this.GetAccountInfo(1);
+      setTimeout(() => {
+        this.reloadRouteView();
+      }, 200);
+    },
   },
 };
 </script>
