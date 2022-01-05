@@ -12,8 +12,10 @@
       <div class="user_info">
         <!-- API -> 將使用者頭像路徑放在src -->
         <!-- src="../assets/nene.jpg"  -->
+        <!--   let url = window.location.origin + "/smartHomeApi/public/api/v1/user/"; -->
+        <!-- http://localhost/smartHomeApi/public -->
         <img
-          :src="'/public' + userData.thumbnail_path"
+          :src="[ApiServerPath + userData.thumbnail_path]"
           class="user_thumbnail"
         />
         <hr class="user_hr" />
@@ -52,6 +54,8 @@ export default {
     return {
       //首頁路徑
       HomePath: "/",
+      ApiServerPath: window.location.origin + "/smartHomeApi/public/",
+      
       // 管理產品路徑
       manageProductPath: "/manage/product",
       // 產品列表路徑
@@ -61,8 +65,12 @@ export default {
       // userData: null,
     };
   },
-  mounted() {
-  },
+  mounted() {},
+  methods:{
+    // ReturnApiServerPath(){
+    //   return this.ApiServerPath + this.userData;
+    // }
+  }
 };
 </script>
 

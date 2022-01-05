@@ -7,7 +7,7 @@
         <img
           id="avatarImg"
           class="accountColumnAvatar"
-          :src="'/public' + userInfo.thumbnail_path"
+          :src="[ApiServerPath + userInfo.thumbnail_path]"
         />
         <!-- 更改頭像 -->
         <input
@@ -52,7 +52,7 @@
           @keyup="CheckIfmodify($event)"
           @change="CheckIfmodify($event)"
           data-type="account"
-           name="account"
+          name="account"
         />
       </div>
     </div>
@@ -137,13 +137,15 @@ export default {
         thumbnail_path: "/storage/thumbnail/defaultAvatar.jpg",
       },
       afterUserInfo: null,
+      ApiServerPath: window.location.origin + "/smartHomeApi/public/",
+      
     };
   },
   created() {
     const __this = this;
     // API取使用者資料
     setTimeout(() => {
-      fetch("/api/user/1", {})
+      fetch(__this.ApiServerPath + "api/v1/user/1", {})
         .then((response) => {
           return response.json();
         })
@@ -165,7 +167,6 @@ export default {
       let TargetDom = event.currentTarget;
       let TargetType = TargetDom.dataset.type;
       let TargetValue = TargetDom.value;
-
       if (TargetType == "thumbnail_path") {
         let input = event.target;
         // console.log(input.files[0]);
@@ -176,8 +177,8 @@ export default {
           };
           fr.readAsDataURL(input.files[0]);
         }
-         __this.afterUserInfo[TargetType] = input.files[0];
-         __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
+        __this.afterUserInfo[TargetType] = input.files[0];
+        __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);
       } else {
         __this.afterUserInfo[TargetType] = TargetValue;
         __this.$emit("update", [__this.userInfo, __this.afterUserInfo]);

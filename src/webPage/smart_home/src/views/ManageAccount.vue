@@ -72,8 +72,8 @@ export default {
       for (var key in __this.afterVal) {
         form_data.append(key, __this.afterVal[key]);
       }
-
-      fetch("/api/user/1", {
+      let url = window.location.origin + "/smartHomeApi/public/api/v1/user/1";
+      fetch(url, {
         method: "post",
         // headers: {
         //   Accept: "application/json",
@@ -84,14 +84,13 @@ export default {
           return response.json();
         })
         .then((json) => {
-          if(json.success){
+          if (json.success) {
             // console.log(json);
             // 呼叫父元件 重新抓取使用者資料
-            __this.$emit("AccountHasModify",true);
+            __this.$emit("AccountHasModify", true);
             // __this.$forceUpdate();
-          }
-          else{
-             console.log(json.message);
+          } else {
+            console.log(json.message);
           }
         })
         .catch((err) => {

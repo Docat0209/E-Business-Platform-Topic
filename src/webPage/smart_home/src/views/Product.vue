@@ -58,17 +58,17 @@ export default {
     return {};
   },
   created() {
-    const __this = this;
-    fetch("/api/User/2", {})
-      .then((response) => {
-        return response.json();
-      })
-      .then((jsonData) => {
-        __this.userData = jsonData[0];
-      })
-      .catch((err) => {
-        console.log("錯誤", err);
-      });
+    // const __this = this;
+    // fetch("/api/User/2", {})
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+    //     __this.userData = jsonData[0];
+    //   })
+    //   .catch((err) => {
+    //     console.log("錯誤", err);
+    //   });
   },
 };
 </script>

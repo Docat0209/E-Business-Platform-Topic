@@ -49,7 +49,10 @@ export default {
     },
     GetAccountInfo(id) {
       const __this = this;
-      fetch("/api/user/" + id, {})
+      // http://localhost/smartHomeApi/public/api/v1/
+      let url = window.location.origin + "/smartHomeApi/public/api/v1/user/"+ id;
+      console.log(url);
+      fetch(url, {})
         .then((response) => {
           return response.json();
         })
